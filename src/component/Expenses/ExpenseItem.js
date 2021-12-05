@@ -5,7 +5,7 @@ import Card from '../UI/Card';
 const ExpenseItem=(value)=>{
     const [title,settitle]=useState(value.title);
     const changefun=()=>{
-        settitle('hello this function ');   
+        settitle('hello this function chnage ');   
     }
     return(
         <Card className="expense_item">
