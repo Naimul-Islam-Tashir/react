@@ -1,25 +1,50 @@
-import React from "react";
+import React,{ useState } from "react";
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
+    const [enteredTittle,setEnteredTittle]=useState('');
+    const [enteredAmount,setEnteredAmount]=useState('');
+    const [enteredDate,setEnteredDate]=useState('');
+    const tittleChangeHandler = (event) => {
+        setEnteredTittle(event.target.value);
+    }
+    const amountChangeHandler=(event)=>{
+        setEnteredAmount(event.target.value);
+    }
+    const dateChangeHandler=(event)=>{
+        setEnteredDate(event.target.value);
+    }
+    const submitHandler= (event) =>{
+        event.preventDefault();
+        const expenseDate = {
+            title:enteredTittle,
+            amount:enteredAmount,
+            date:new Date(enteredDate)
+        }
+        props.onsaveExpenseDate(expenseDate);
+        console.log(expenseDate);
+      setEnteredTittle('');
+      setEnteredAmount('');
+      setEnteredDate('');
+    }
     return(
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" />
+                    <input type="text" value={enteredTittle} onChange={tittleChangeHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" min="0.01" step="0.01"/>
+                    <input type="number" min="0.01" step="0.01" value={enteredAmount} onChange={amountChangeHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" />
+                    <input type="date" value={enteredDate} onChange={dateChangeHandler}/>
                 </div>
             </div>
             <div className="new-expense__actions">
-             <button type="submit">Submit</button>
+             <button type="submit" >Submit</button>
             </div>
         </form>
     );

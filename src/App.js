@@ -40,11 +40,14 @@ import NewExpens from "./component/NewExpense/NewExpens";
         amount:30
     }
  ];
+ const AddexpenseHandler=(expense)=>{
+   console.log(expense);
+ }
 
     return(
         <div>
             <h2>ADD NEW Expense:</h2>
-            <NewExpens />
+            <NewExpens onAddExpense={AddexpenseHandler} />
             <Expenses item={expense} />
         </div>
     );
