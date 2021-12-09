@@ -10,7 +10,6 @@ const ExpenseItem=(value)=>{
               <h2>{value.title}</h2>
               <div className="expense_item__price">${value.amount}</div>
             </div>
-           
         </Card>
     );
 }
